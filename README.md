@@ -1,4 +1,4 @@
-# Harry Potter RPG
+# Harry Potter RPG Game
 A jQuery powered, Harry Potter themed RPG game
 
 [Link to game!](https://erffmea.github.io/unit-4-game/) 

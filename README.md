@@ -1,5 +1,3 @@
-# rpg-game
-
 # Harry Potter RPG
 A jQuery powered, Harry Potter themed RPG game
 

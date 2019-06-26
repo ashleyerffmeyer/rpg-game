@@ -6,7 +6,9 @@ A jQuery powered, Harry Potter themed RPG game
 ## Authors
 Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 * Ryan LaRue (Instructor)
+* Jenny Dean (TA)
 * Jacqueline Kolze (TA)
+* Eli Vargas (TA)
 
 ## Languages/Libraries Used
 * JavaScript

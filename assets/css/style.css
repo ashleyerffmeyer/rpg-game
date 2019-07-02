@@ -1,0 +1,18 @@
+body{
+    font-family: 'IM Fell English', serif, Arial, Helvetica, sans-serif;
+    color: white;
+    background-image: url(../images/hogwarts.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.section-title{
+font-size: 200%;
+}
+
+.main-section-title{
+    font-size: 300%;
+    text-align: center;
+
+}

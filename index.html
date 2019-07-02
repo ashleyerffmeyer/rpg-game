@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Harry Potter RPG Game!</title>
+
+    <!--Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=IM+Fell+English&display=swap" rel="stylesheet">
+
+    <!--Css style sheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="main-section-title">Harry Potter RPG!</div>
+    <div id="main-section-game">
+
+        <!--Where characters are initially available to be selected-->
+        <div id="characters-selection">
+            <div class="section-title">Select Your Character!</div>
+        </div>
+
+        <!--Section for selected characters-->
+        <div id="selected-character-section">
+
+
+            <div class="section-title">Your Character</div>
+
+            <!--Where selected characters will appear-->
+            <div id="selected-character"></div>
+
+        </div>
+
+        <div id="available-to-attack-section">
+            <div class="section-title">Enemies Available to Attack</div>
+
+        </div>
+
+        <div class="section-title">Fight Section</div>
+
+        <div id="fight-section">
+            <button id="attack-button">ATTACK</button>
+
+        </div>
+
+        <div id="action">
+            <div class="character-section">
+                <div class="section-title">Defender</div>
+
+                <!--Where defender will appear-->
+                <div id="defender"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Area for game messages-->
+    <div id="game-message"></div>
+
+    <!--Link to the jQuery library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Importing JavaScript game logic-->
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+</body>
+
+</html>

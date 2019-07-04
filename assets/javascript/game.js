@@ -35,6 +35,8 @@ $(document).ready(function () {
     var selectedCharacter;
     var combatants = [];
     var currDefender;
+    var turnCounter = 1;
+    var killCounter = 0;
 
     console.log(characters);
 
@@ -59,6 +61,17 @@ $(document).ready(function () {
         }
     };
 
+    //function to handle rendering game message
+    var renderMessage = function (message) {
+        var gameMessage = $("#game-message");
+        var newMessage = $("<div>").text(message);
+        gameMessage.append(newMessage);
+
+        //if we get this specific message passed in, clear the message area
+        if (message === "clearMessage") {
+            gameMessage.text("");
+        }
+    }
 
     //function to render characters to the page
     var renderCharacters = function (charObj, areaRender) {
@@ -96,6 +109,7 @@ $(document).ready(function () {
                 if ($("#defender").children().length === 0) {
                     renderCharacters(name, "#defender");
                     $(this).hide();
+                    renderMessage("clearMessage");
                 }
             });
         }
@@ -111,6 +125,30 @@ $(document).ready(function () {
                 }
             }
         }
+
+        //re-render defender when attacked
+        if (areaRender === "playerDamage") {
+            $("#defender").empty();
+            renderOne(charObj, "#defender", "defender");
+        }
+
+        //re-render player character when attacked
+        if (areaRender === "enemyDamage") {
+            $("#selected-character").empty();
+            renderOne(charObj, "#selected-character", "");
+        }
+
+        //removed defeated enemy
+        if (areaRender === "enemyDefeated") {
+            ("#defender").empty();
+            var gameStateMessage = "You have defeated " + charObj.name + ", you can choose to fight another enemy."
+            renderMessage(gameStateMessage);
+        }
+    }
+
+    //function to restart the game 
+    var restartGame = function (inputEndGame) {
+
     }
 
     //call function to render all characters to the page when game begins
@@ -151,5 +189,57 @@ $(document).ready(function () {
             renderCharacters(combatants, "#available-to-attack-section");
         }
 
-    })
+    });
+
+    //click on attack button
+    $("#attack-button").on("click", function () {
+
+        if ($("#defender").children().length !== 0) {
+
+            //reduce defender's health by your attack value
+            currDefender.health == (selectedCharacter.attack * turnCounter);
+
+            //if the enemy still has health
+            if (currDefender.health > 0) {
+
+                //create attack messages
+                var attackMessage = "You attacked" + currDefender.name + " for " + (selectedCharacter.attack + turnCounter) + " damage.";
+                var counterAttackMessage = currDefender.name + " attacked you back for " + currDefender.enemyAttackBack + " damage.";
+                renderMessage("clearMessage");
+
+                //render the enemy's updated character card
+                renderCharacters(currDefender, "playerDamage");
+
+                //render combat messages
+                renderMessage(attackMessage);
+                renderMessage(counterAttackMessage);
+
+                //reduce your health by the attack amount
+                selectedCharacter.health -= currDefender.enemyAttackBack;
+
+                //render player's updated character card
+                renderCharacters(selectedCharacter, "enemyDamage");
+            }
+
+            //else if the enemy has less than 0 health they are defeated
+            else {
+                //remove enemy's character card
+                renderCharacters(currDefender, "enemyDefeated");
+
+                //increment kill count
+                killCounter++;
+
+                //check if all oppoents are dead
+                if (killCounter >= 3) {
+
+                }
+            }
+        }
+        //increase number of turns by 1 with each click
+        turnCounter++;
+
+
+
+
+    });
 });

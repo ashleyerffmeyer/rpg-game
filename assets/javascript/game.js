@@ -41,7 +41,7 @@ $(document).ready(function () {
     var currDefender;
 
     //initial game turn counter
-    var turnCounter = 1;
+    var turnCounter = 0;
 
     //initial kill counter
     var killCounter = 0;
@@ -125,7 +125,6 @@ $(document).ready(function () {
 
         //"#defender" is the div where the active opponent appears
         //if true, render the selected opponent in this location
-
         if (areaRender === "#defender") {
             $(areaRender).empty();
             for (var i = 0; i < combatants.length; i++) {
@@ -149,7 +148,7 @@ $(document).ready(function () {
 
         //removed defeated enemy
         if (areaRender === "enemyDefeated") {
-            ("#defender").empty();
+            $("#defender").empty();
             var gameStateMessage = "You have defeated " + charObj.name + ", you can choose to fight another enemy."
             renderMessage(gameStateMessage);
         }
@@ -218,6 +217,7 @@ $(document).ready(function () {
 
             //reduce defender's health by your attack value
             currDefender.health -= (selectedCharacter.attack * turnCounter);
+            console.log(currDefender.health);
 
             //if the enemy still has health
             if (currDefender.health > 0) {

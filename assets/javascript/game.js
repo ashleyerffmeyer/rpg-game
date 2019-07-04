@@ -149,7 +149,7 @@ $(document).ready(function () {
         //removed defeated enemy
         if (areaRender === "enemyDefeated") {
             $("#defender").empty();
-            var gameStateMessage = "You have defeated " + charObj.name + ". You can choose to fight another enemy."
+            var gameStateMessage = "You have defeated " + charObj.name + ". Choose another enemy to fight."
             renderMessage(gameStateMessage);
         }
     }

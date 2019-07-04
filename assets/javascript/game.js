@@ -149,7 +149,7 @@ $(document).ready(function () {
         //removed defeated enemy
         if (areaRender === "enemyDefeated") {
             $("#defender").empty();
-            var gameStateMessage = "You have defeated " + charObj.name + ", you can choose to fight another enemy."
+            var gameStateMessage = "You have defeated " + charObj.name + ". You can choose to fight another enemy."
             renderMessage(gameStateMessage);
         }
     }
@@ -239,13 +239,13 @@ $(document).ready(function () {
 
                 //render player's updated character card
                 renderCharacters(selectedCharacter, "enemyDamage");
-            }
 
-            //call the restartGame function to restart the game
-            if (selectedCharacter.health <= 0) {
-                renderMessage("clearMessage");
-                restartGame("You have been defeated...GAME OVER!!!");
-                $("#attack-button").unbind("click");
+                //call the restartGame function to restart the game
+                if (selectedCharacter.health <= 0) {
+                    renderMessage("clearMessage");
+                    restartGame("You have been defeated...GAME OVER!!!");
+                    $("#attack-button").unbind("click");
+                }
             }
 
             //else if the enemy has less than 0 health they are defeated

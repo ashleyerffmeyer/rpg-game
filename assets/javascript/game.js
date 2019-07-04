@@ -31,13 +31,22 @@ $(document).ready(function () {
 
     };
 
-    //variable the currently selected character
+    //variable for the currently selected character
     var selectedCharacter;
+
+    //array variable to contain remaining possible combatants
     var combatants = [];
+
+    //variable to contain current defender
     var currDefender;
+
+    //initial game turn counter
     var turnCounter = 1;
+
+    //initial kill counter
     var killCounter = 0;
 
+    //test
     console.log(characters);
 
     //function to render a character card to the page
@@ -149,7 +158,18 @@ $(document).ready(function () {
     //function to restart the game 
     var restartGame = function (inputEndGame) {
 
-    }
+        //when restart button is clicked, reload the page
+        var restart = $("<button>RESTART</button>").click(function () {
+            location.reload();
+        })
+
+        //build div to diplsay the victory/defeat message
+        var gameState = $("<div>").text(inputEndGame);
+
+        //render restart button and victory/defeat message to page
+        $("body").append(gameState);
+        $("body").append(restart);
+    };
 
     //call function to render all characters to the page when game begins
     renderCharacters(characters, "#characters-section");
@@ -166,7 +186,7 @@ $(document).ready(function () {
         //test
         console.log(name);
 
-        //if then statement to if a character has been chosen or not
+        //if then statement to run through if a character has been chosen or not
         if (!selectedCharacter) {
 
             selectedCharacter = characters[name];
@@ -197,13 +217,13 @@ $(document).ready(function () {
         if ($("#defender").children().length !== 0) {
 
             //reduce defender's health by your attack value
-            currDefender.health == (selectedCharacter.attack * turnCounter);
+            currDefender.health -= (selectedCharacter.attack * turnCounter);
 
             //if the enemy still has health
             if (currDefender.health > 0) {
 
                 //create attack messages
-                var attackMessage = "You attacked" + currDefender.name + " for " + (selectedCharacter.attack + turnCounter) + " damage.";
+                var attackMessage = "You attacked " + currDefender.name + " for " + (selectedCharacter.attack + turnCounter) + " damage.";
                 var counterAttackMessage = currDefender.name + " attacked you back for " + currDefender.enemyAttackBack + " damage.";
                 renderMessage("clearMessage");
 
@@ -221,6 +241,13 @@ $(document).ready(function () {
                 renderCharacters(selectedCharacter, "enemyDamage");
             }
 
+            //call the restartGame function to restart the game
+            if (selectedCharacter.health <= 0) {
+                renderMessage("clearMessage");
+                restartGame("You have been defeated...GAME OVER!!!");
+                $("#attack-button").unbind("click");
+            }
+
             //else if the enemy has less than 0 health they are defeated
             else {
                 //remove enemy's character card
@@ -229,17 +256,16 @@ $(document).ready(function () {
                 //increment kill count
                 killCounter++;
 
+                //call the restartGame function to allow user to restart game
                 //check if all oppoents are dead
                 if (killCounter >= 3) {
-
+                    renderMessage("clearMessage");
+                    restartGame("YOU WON!!! GAME OVER!!!");
                 }
             }
+            //increase number of turns by 1 with each click
+            turnCounter++;
         }
-        //increase number of turns by 1 with each click
-        turnCounter++;
-
-
-
 
     });
 });

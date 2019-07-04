@@ -14,12 +14,13 @@ img{
 
 .section-title{
 font-size: 200%;
+color: white;
 }
 
 .main-section-title{
     font-size: 300%;
     text-align: center;
-
+    color: white;
 }
 
 .character{
@@ -43,4 +44,8 @@ font-size: 200%;
 
 .character-health{
     text-align: center;
+}
+
+#game-message{
+    color: white;
 }

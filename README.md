@@ -1,7 +1,7 @@
 # Harry Potter RPG Game
 A jQuery powered, Harry Potter themed RPG game
 
-[Link to game!](https://erffmea.github.io/unit-4-game/) 
+[Link to game!](https://erffmea.github.io/rpg-game/) 
 
 ## Authors
 Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
